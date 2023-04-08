@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<menuitem id="st_menu_root" name ="CU Restaurant" />
+			<menuitem id="city_universitaire_resident_view" name="Résidents"  parent="st_menu_root" action="resident_actw" />
+			<menuitem id="city_universitaire_reservation_view" name="Réservations"  parent="st_menu_root" action="reservation_actw" />
+			<menuitem id="city_universitaire_agent_view" name="Agents"  parent="st_menu_root" action="cu_agent_actw" />
+			<menuitem id="city_universitaire_gerant_view" name="Gérants"  parent="st_menu_root" action="cu_gerant_actw" />
+			<!-- <menuitem id="plan_menu_view" name="Plan"  parent="st_menu_root" action="plan_actw"  /> -->
+			<!-- <menuitem id="dashboard_menu_view" name="Dashboard"  parent="st_menu_root" action="dashboard_actw" /> -->
+	</data>
+</odoo>

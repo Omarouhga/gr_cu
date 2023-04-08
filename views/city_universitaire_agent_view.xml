@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="cu_agent_search" model="ir.ui.view">
+            <field name="name">cu.agent.search</field>
+            <field name="model">cu.agent</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="last_name"/>
+                    <field name="phone"/>
+                    <field name="email"></field>
+                </search>
+            </field>
+        </record>
+        <record id="cu_agent_tree" model="ir.ui.view">
+            <field name="name">cu.agent.tree</field>
+            <field name="model">cu.agent</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="last_name"/>
+                    <field name="phone"/>
+                    <field name="email"></field>
+                </tree>
+            </field>
+        </record>
+        <record id="cu_agent_form" model="ir.ui.view">
+            <field name="name">cu.agent.form</field>
+            <field name="model">cu.agent</field>
+            <field name="arch" type="xml">
+                
+                    <form>
+                        <sheet> 
+                            <group>
+                                <group>
+                                    <field name="name"/>
+                                    <field name="last_name"/>
+                                </group>
+                                <group>
+                                    <field name="phone"/>
+                                    <field name="email"></field>
+                                </group>
+                            </group>
+                        
+                    </sheet>
+                    </form>
+                
+            </field>
+        </record>
+        <record id="cu_agent_actw" model="ir.actions.act_window">
+            <field name="name">agent</field>
+            <field name="res_model">cu.agent</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Cliquer sur créer pour ajouter un nouveau agent
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

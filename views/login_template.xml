@@ -1,0 +1,52 @@
+<odoo>
+    <template id="login_template">
+      <t t-call="website.layout">
+        <head>
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+          <style>
+            /* CSS personnalisé */
+            html, body {
+              height: 100%;
+            }
+  
+            .center-vh {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 100%;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="center-vh">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-header">
+                      <center><h4>Connexion</h4></center>
+                    </div>
+                    <div class="card-body">
+                      <form method="post" action="/auth/login">
+                        <div class="form-group">
+                          <label for="email">Nom d'utilisateur:</label>
+                          <input type="text" id="email" name="email" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                          <label for="password">Mot de passe:</label>
+                          <input type="password" id="password" name="password" class="form-control" />
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Connexion</button>
+                      </form>
+                      <center><p class="mt-3 mb-0">Pas encore inscrit ? <a href="#">Activater mon compte</a>.</p></center>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </body>
+      </t>
+    </template>
+  </odoo>
+  

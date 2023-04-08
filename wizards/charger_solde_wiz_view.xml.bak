@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data >
+			<record id="majrh_view_chose_date" model="ir.ui.view">
+			<field name="name">Search Avancement Form</field>
+			<field name="model">majrh.avancements.list</field>
+			<field name="arch" type="xml">
+					<form string="Recherche">
+							<group>
+							
+								<field name="date_avancement"/>
+							</group>
+							<footer>
+								<button id="majrh_chose_btn"
+										name="avancement_list" 
+										string="Chercher"
+										class="btn-primary"
+										type="object"  />
+								<button string="Annuler" 
+										class="btn-secondary"
+										special="cancel"  />
+								
+							</footer>
+							
+				
+					</form>
+			</field>
+			</record>
+			<record id="majrh_chose_date_actw" model="ir.actions.act_window">
+				<field name="name">Choix de date</field>
+				<field name="type">ir.actions.act_window</field>
+				<field name="res_model">majrh.avancements.list</field>
+				<field name="view_mode">form</field>
+				<field name="view_id" ref="majrh_view_chose_date"/>
+			    <field name="target">new</field>
+				
+			</record>	
+	</data>
+</odoo>

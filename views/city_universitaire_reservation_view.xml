@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="reservation_search" model="ir.ui.view">
+            <field name="name">cu.reservation.search</field>
+            <field name="model">cu.reservation</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="resident_id"/>
+                    <field name="date_reservation"/>
+                    <field name="type"/>
+                    <field name="date_consommation"></field>
+                </search>
+            </field>
+        </record>
+        <record id="reservation_tree" model="ir.ui.view">
+            <field name="name">cu.reservation.tree</field>
+            <field name="model">cu.reservation</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="resident_id"/>
+                    <field name="date_reservation"/>
+                    <field name="type"/>
+                    <field name="date_consommation"></field>
+                </tree>
+            </field>
+        </record>
+        <record id="reservation_form" model="ir.ui.view">
+            <field name="name">cu.reservation.form</field>
+            <field name="model">cu.reservation</field>
+            <field name="arch" type="xml">
+                
+                    <form>
+                        <sheet> 
+                            <group>
+                                <group>
+                                    <field name="resident_id"/>
+                                    <field name="date_reservation" readoly="True"/>
+                                </group>
+                                <group>
+                                    <field name="date_consommation"></field>
+                                    <field name="type"/>
+                                </group>
+                            </group>
+                        
+                    </sheet>
+                    </form>
+                
+            </field>
+        </record>
+        <record id="reservation_actw" model="ir.actions.act_window">
+            <field name="name">reservation</field>
+            <field name="res_model">cu.reservation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Cliquer sur créer pour ajouter un nouvelle réservation
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

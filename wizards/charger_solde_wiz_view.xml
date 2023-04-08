@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data >
+			<record id="cugr_charger_solde" model="ir.ui.view">
+			<field name="name">Charger solde form</field>
+			<field name="model">cu.resident.solde</field>
+			<field name="arch" type="xml">
+					<form string="Charger solde">
+							<group>
+								<field name="montant"/>
+							</group>
+							<footer>
+								<button id="cugr_charger_solde_btn"
+										name="charger_solde" 
+										string="Charger"
+										class="btn-primary"
+										type="object"  />
+								<button string="Annuler" 
+										class="btn-secondary"
+										special="cancel"  />
+								
+							</footer>
+							
+				
+					</form>
+			</field>
+			</record>
+			<record id="cugr_charger_solde_actw" model="ir.actions.act_window">
+				<field name="name">Entrer montant</field>
+				<field name="type">ir.actions.act_window</field>
+				<field name="res_model">cu.resident.solde</field>
+				<field name="view_mode">form</field>
+				<field name="view_id" ref="cugr_charger_solde"/>
+			    <field name="target">new</field>
+				
+			</record>	
+	</data>
+</odoo>

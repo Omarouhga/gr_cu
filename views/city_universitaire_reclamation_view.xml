@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="cu_reclamation_search" model="ir.ui.view">
+            <field name="name">cu.reclamation.search</field>
+            <field name="model">cu.reclamation</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="nom_complet"/>
+                    <field name="sujet"/>
+                    <field name="message"/>
+                    <field name="email"></field>
+                </search>
+            </field>
+        </record>
+        <record id="cu_reclamation_tree" model="ir.ui.view">
+            <field name="name">cu.reclamation.tree</field>
+            <field name="model">cu.reclamation</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nom_complet"/>
+                    <field name="sujet"/>
+                    <field name="message"/>
+                    <field name="email"></field>
+                </tree>
+            </field>
+        </record>
+        <record id="cu_reclamation_form" model="ir.ui.view">
+            <field name="name">cu.reclamation.form</field>
+            <field name="model">cu.reclamation</field>
+            <field name="arch" type="xml">
+                
+                    <form>
+                        <sheet> 
+                            <group>
+                                <group>
+                                    <field name="nom_complet"/>
+                                    <field name="sujet"/>
+                                </group>
+                                <group>
+                                    <field name="message"/>
+                                    <field name="email"></field>
+                                </group>
+                            </group>
+                        
+                    </sheet>
+                    </form>
+                
+            </field>
+        </record>
+        <record id="cu_reclamation_actw" model="ir.actions.act_window">
+            <field name="name">reclamation</field>
+            <field name="res_model">cu.reclamation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Cliquer sur créer pour ajouter un nouveau reclamation
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

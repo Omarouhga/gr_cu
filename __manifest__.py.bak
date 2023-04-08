@@ -1,0 +1,23 @@
+{
+    'name': 'ressources humaines usms',
+    'version': '1.0',
+    'category':'RH',
+    'sequence': '-1',
+    'summary': "Gestion des ressources humaines à USMS",
+    'description': "",
+    
+    'depends': 
+    [
+        'base', 'hr'   
+    ],
+    'data':[
+        'views/majrh_employee_view.xml'
+    ],
+     'installable': True,
+    'application': True,
+    'auto_install': False,
+     'license': 'LGPL-3',
+     'author': "TDI ENSA BM"
+     
+    
+}
