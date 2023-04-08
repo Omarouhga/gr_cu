@@ -14,7 +14,7 @@
                             <a class="nav-link" href="/">Acceuil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/auth/login">Espac Résident</a>
+                            <a class="nav-link" href="/auth/login">Espace Résident</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/contact">Contacter-Nous</a>
