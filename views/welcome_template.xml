@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="welcome_template">
+        <t t-call="website.layout">
+            <t t-set="res" t-value="records[0]"/>
+            <div class="row">
+                <div class="col-2">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-informations-tab" data-toggle="pill" href="#v-pills-informations" role="tab" aria-controls="v-pills-informations" aria-selected="true">Mes informations</a>
+                        <a class="nav-link" id="v-pills-solde-tab" data-toggle="pill" href="#v-pills-solde" role="tab" aria-controls="v-pills-solde" aria-selected="false">Mon solde</a>
+                        <a class="nav-link" id="v-pills-reservation-tab" data-toggle="pill" href="#v-pills-reservation" role="tab" aria-controls="v-pills-reservation" aria-selected="false">Réserver</a>
+                        <a class="nav-link" id="v-pills-mes-reservations-tab" data-toggle="pill" href="#v-pills-mes-reservations" role="tab" aria-controls="v-pills-mes-reservations" aria-selected="false">Mes réservations</a>
+                    </div>
+                </div>
+                <div class="col-10">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-informations" role="tabpanel" aria-labelledby="v-pills-informations-tab">
+                            <div class="card">
+                                <div class="card-header">
+                                    <center><h4>Mes informations</h4></center>
+                                </div>
+                                <div class="card-body">
+                                    <div class="col-md-6">
+                                        <t t-foreach="records" t-as="order">
+                                                <center><h4><span t-esc="order.name"></span></h4></center>
+                                                <center><h4><span t-esc="order.last_name"></span></h4></center>
+                                                <center><h4><span t-esc="order.gender"></span></h4></center>
+                                                <center><h4><span t-esc="order.phone"></span></h4></center>
+                                                <center><h4><span t-esc="order.email"></span></h4></center>
+                                                <center><h4><span t-esc="order.password"></span></h4></center>
+                                                <center><h4><span t-esc="order.code_massar"></span></h4></center>
+                                                <center><h4><span t-esc="order.apogee"></span></h4></center>
+                                                
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-solde" role="tabpanel" aria-labelledby="v-pills-solde-tab">
+                            <div class="card">
+                                <div class="card-header">
+                                    <center><h4>Mon solde</h4></center>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Content for Mon solde tab -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-reservation" role="tabpanel" aria-labelledby="v-pills-reservation-tab">
+                            <div class="card">
+                                <div class="card-header">
+                                    <center><h4>Réserver</h4></center>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Content for Réserver tab -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-mes-reservations" role="tabpanel" aria-labelledby="v-pills-mes-reservations-tab">
+                            <div class="card">
+                                <div class="card-header">
+                                    <center><h4>Mes réservations</h4></center>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Content for Mes réservations tab -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

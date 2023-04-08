@@ -16,6 +16,7 @@
         'wizards/charger_solde_wiz_view.xml',
         'views/web_template.xml',
         'views/login_template.xml',
+        'views/welcome_template.xml',
         # 'views/paiement_template.xml',
         'views/website_layout.xml',
         'views/city_universitaire_reservation_view.xml',
