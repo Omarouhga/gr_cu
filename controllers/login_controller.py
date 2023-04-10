@@ -6,7 +6,9 @@ class AuthController(http.Controller):
     email = None 
     @http.route('/auth/login',csrf=False, type='http', auth="public", website=True, sitemap=False)
     def login(self, **post):
+        error=None
         if request.httprequest.method == 'POST':
+            
             global email
             email = post.get('email')
             password = post.get('password')
@@ -15,9 +17,9 @@ class AuthController(http.Controller):
             if user and user.sudo().password==password:
                 return request.redirect('/welcome')
             else:
-                return "mot de passe ou username incorrect"
-        else:
-            return request.render('gr_cu.login_template')
+                error="Mot de passe ou email est incorrect"
+        
+        return request.render('gr_cu.login_template',{'error':error})
         
     @http.route('/auth/logout', type='http', auth="public", website=True, sitemap=False)
     def logout(self):

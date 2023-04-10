@@ -3,7 +3,7 @@
 <odoo>
     <template id="layout_inherit_header" inherit_id="website.layout">
         <xpath expr="//header" position="replace">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg " >
                 <a class="navbar-brand" href="#">CU</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -27,44 +27,22 @@
 
     <template id="layout_inherit_footer" inherit_id="website.layout">
         <xpath expr="//footer" position="replace">
-            <footer class="bg-light">
-                <div class="container py-3">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h4>Informations de l'entreprise</h4>
-                            <p>Notre entreprise a pour objectif de satisfaire les résidents de la cité universitaire tout en simplifiant les processus de restauration</p>
-                        </div>
-                        <div class="col-md-4">
-                            <h4>Contacter-Nous</h4>
-                            <ul class="list-unstyled">
-                                <li><i class="fa fa-map-marker"></i> Address: Mghila, Béni Mellal</li>
-                                <li><i class="fa fa-phone"></i> Phone: +212 762-271299</li>
-                                <li><i class="fa fa-envelope"></i> Email: restaurant@gmail.com</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <h4>Follow Us</h4>
-                            <ul class="list-unstyled">
-                                <li><a href="#"><i class="fa fa-facebook"></i> Facebook</a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i> Twitter</a></li>
-                                <li><a href="#"><i class="fa fa-instagram"></i> Instagram</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-secondary py-1">
+            <footer style="background-color: #333; color: white;">
+                <div class="text-center py-3">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-6 text-white text-center text-md-left">
-                                <p> 2023 Restaurant. tout les droits sont réservés.</p>
+                            <div class="col-md-6 text-center text-md-left">
+                                <p>Copyright © 2023 
+                                    <a href="#">Restaurant</a>. Tous droits réservés.</p>
                             </div>
-                            <div class="col-md-6 text-white text-center text-md-right">
-                                <p>Développer et désigner par  TDI</p>
+                            <div class="col-md-6 text-center text-md-right">
+                                <p>Développé et conçu par TDI.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </footer>
+            
         </xpath>
         
     </template>
