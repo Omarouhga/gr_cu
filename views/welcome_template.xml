@@ -14,6 +14,7 @@
                 visibilityButton.textContent = "Show";
               }
             }
+            function Charger_solde(){}
           </script>        
           <t t-call="website.layout">
             <t t-set="res" t-value="records[0]"/>
@@ -68,7 +69,7 @@
                                         <div class="form-group row">
                                             <label for="phone" class="col-sm-2 col-form-label">Phone</label>
                                             <div class="col-sm-10">
-                                                <input type="tel" class="form-control" id="phone" t-att-value="res.phone" placeholder="Enter phone number"/>
+                                                <input type="text" class="form-control" id="phone" t-att-value="res.phone" placeholder="Enter phone number"/>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -100,8 +101,22 @@
                                 <div class="card-header">
                                     <center><h4>Mon solde</h4></center>
                                 </div>
+
                                 <div class="card-body">
-                                    <!-- Content for Mon solde tab -->
+                                    <div class="form-group row">
+                                        <label for="phone" class="col-sm-2 col-form-label">Solde</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="solde" t-att-value="res.solde"  readonly="true" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="Name" class="col-sm-2 col-form-label">Charger Solde</label>
+                                        <div class="col-sm-10">
+                                            <div class="col-sm-1">
+                                                <button id="visibility-button" class="btn btn-outline-secondary" type="button" onclick="Charger_solde()">Charger</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -121,7 +136,27 @@
                                     <center><h4>Mes réservations</h4></center>
                                 </div>
                                 <div class="card-body">
-                                    <!-- Content for Mes réservations tab -->
+                                    <table class="table-striped table">
+                                        <thead style="font-size:18px;">
+                                            <tr>
+                                                <h6>
+                                                    <b>
+                                                        <th>Type</th>
+                                                        <th>Date</th>
+                
+                                                    </b>
+                                                </h6>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="reservations" t-as="order">
+                                               <tr>
+                                                    <td><span t-esc="order.type"></span></td>
+                                                    <td><span t-esc="order.date_consommation"></span></td>
+                                               </tr> 
+                                            </t>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

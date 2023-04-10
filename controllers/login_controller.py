@@ -6,9 +6,7 @@ class AuthController(http.Controller):
     email = None 
     @http.route('/auth/login',csrf=False, type='http', auth="public", website=True, sitemap=False)
     def login(self, **post):
-        error=None
         if request.httprequest.method == 'POST':
-            
             global email
             email = post.get('email')
             password = post.get('password')
@@ -17,9 +15,9 @@ class AuthController(http.Controller):
             if user and user.sudo().password==password:
                 return request.redirect('/welcome')
             else:
-                error="Mot de passe ou email est incorrect"
-        
-        return request.render('gr_cu.login_template',{'error':error})
+                return "mot de passe ou username incorrect"
+        else:
+            return request.render('gr_cu.login_template')
         
     @http.route('/auth/logout', type='http', auth="public", website=True, sitemap=False)
     def logout(self):
@@ -29,8 +27,10 @@ class AuthController(http.Controller):
     def welcome(self):
         if email :
             etud_data=request.env['cu.resident'].sudo().search([('email', '=', email)])
+            reservations = request.env['cu.reservation'].sudo().search([('resident_id', '=', etud_data.id)])
             values={
-            'records':etud_data}
+            'records':etud_data,
+            'reservations':reservations}
             # Render the welcoming page template with the resident name and solde
             return request.render('gr_cu.welcome_template',values)
         else:
