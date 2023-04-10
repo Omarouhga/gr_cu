@@ -17,7 +17,7 @@ class CUResident(models.Model):
     reservations = fields.One2many('cu.reservation','resident_id',string="reservation")
     solde = fields.Integer(string="Solde")
     apogee=fields.Integer(String="Apogee")
-    
+    verification = False
 
     def validate_mail(self):
         if self.email:
