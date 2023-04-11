@@ -18,6 +18,10 @@
           </style>
         </head>
         <body>
+          <div t-if="success_message" class="alert alert-success" role="alert">
+            <p t-esc="success_message"/>
+        </div>
+        
           <div class="center-vh">
             <div class="container">
               <div class="row justify-content-center">

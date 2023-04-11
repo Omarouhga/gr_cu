@@ -57,7 +57,7 @@
                                         <div class="form-group row">
                                             <label for="code_massar" class="col-sm-2 col-form-label">Code Massar</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="code_massar" t-att-value="res.code_massar" readonly="true"/>
+                                                <input type="text" class="form-control" name="code_massar" id="code_massar" t-att-value="res.code_massar" readonly="true"/>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -69,29 +69,40 @@
                                         <div class="form-group row">
                                             <label for="phone" class="col-sm-2 col-form-label">Phone</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="phone" t-att-value="res.phone" placeholder="Enter phone number"/>
+                                                <input type="text" name="phone" class="form-control" id="phone" t-att-value="res.phone" placeholder="Enter phone number"/>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="email" class="col-sm-2 col-form-label">Email</label>
                                             <div class="col-sm-10">
-                                                <input type="email" class="form-control" id="email" t-att-value="res.email" placeholder="Enter email"/>
+                                                <input type="email" class="form-control" id="email" name="email" t-att-value="res.email" placeholder="Enter email"/>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="password" class="col-sm-2 col-form-label">Password</label>
                                             <div class="col-sm-9">
-                                                <input type="password" class="form-control" id="password" t-att-value="res.password" placeholder="Enter password"/>
+                                                <input type="password" name="password" class="form-control" id="password" t-att-value="res.password" placeholder="Enter password"/>
                                             </div>
                                             <div class="col-sm-1">
                                                 <button id="visibility-button" class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility()">👁️</button>
                                             </div>
+                                            <t t-if="error">
+                                                <center><div class="text-danger" t-esc="error"></div></center>
+                                              </t>
+                                         
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-10 offset-sm-2">
                                                 <button type="submit" class="btn btn-primary">Submit</button>
                                             </div>
                                         </div>
+                                        <t t-if="message == '1'">
+                                            <center><div class="alert alert-success mt-3">Vos informations sont actualisées avec succès.</div></center>
+                                        </t>
+                                        <t t-if="message == '0'">
+                                        <center><div  class="alert alert-danger mt-3">Vous n'avez effectué aucun changement</div></center>
+                                        </t>
+                                         
                                     </form>
                                 </div>
                             </div>
@@ -165,4 +176,11 @@
             </div>
         </t>
     </template>
+    <template id="success_message">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong><t t-esc="success_message"/></strong>
+        </div>
+    </template>
+    
 </odoo>

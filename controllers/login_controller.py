@@ -6,6 +6,7 @@ class AuthController(http.Controller):
     email = None 
     @http.route('/auth/login',csrf=False, type='http', auth="public", website=True, sitemap=False)
     def login(self, **post):
+        error=None
         if request.httprequest.method == 'POST':
             global email
             email = post.get('email')
@@ -15,9 +16,10 @@ class AuthController(http.Controller):
             if user and user.sudo().password==password:
                 return request.redirect('/welcome')
             else:
-                return "mot de passe ou username incorrect"
-        else:
-            return request.render('gr_cu.login_template')
+                error="mot de passe ou username incorrect"
+                
+        
+        return request.render('gr_cu.login_template',{'error':error})
         
     @http.route('/auth/logout', type='http', auth="public", website=True, sitemap=False)
     def logout(self):
@@ -36,3 +38,5 @@ class AuthController(http.Controller):
         else:
             # Render an error page if no resident is found for the current user
             return request.render('gr_cu.error_template', {'error_message': 'Resident not found for current user'})
+    
+    
