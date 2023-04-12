@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="welcome_template">
+        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
         <script>
             function togglePasswordVisibility() {
               var passwordField = document.getElementById("password");
@@ -15,7 +16,32 @@
               }
             }
             function Charger_solde(){}
-          </script>        
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                var calendarEl = document.getElementById('calendar');
+                var events = []; // define an empty array to store events
+                <t t-foreach="reservations" t-as="order">
+                    var event = {
+                        title: '<t t-esc="order.type" />',
+                        start: '<t t-esc="order.date_consommation" />',
+                        end: '<t t-esc="order.date_consommation" />'
+                    };
+                    events.push(event); 
+                    console.log(events); 
+                </t>
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth'
+                    },
+                    editable: false,
+                    events: events 
+                });
+                calendar.render();
+            });
+          </script>
           <t t-call="website.layout">
             <t t-set="res" t-value="records[0]"/>
             <div class="row">
@@ -137,7 +163,6 @@
                                     <center><h4>Réserver</h4></center>
                                 </div>
                                 <div class="card-body">
-                                    <!-- Content for Réserver tab -->
                                 </div>
                             </div>
                         </div>
@@ -164,10 +189,11 @@
                                                <tr>
                                                     <td><span t-esc="order.type"></span></td>
                                                     <td><span t-esc="order.date_consommation"></span></td>
-                                               </tr> 
+                                               </tr>
                                             </t>
                                         </tbody>
                                     </table>
+                                    <div id='calendar'></div> 
                                 </div>
                             </div>
                         </div>
