@@ -53,35 +53,7 @@
                     <div class="container">
                         <h1 class="display-4">Bienvenue à la restauration en lign de la Cité Universitaire</h1>
                         <p class="lead mb-5">Réservez vos repas à l'avance pour éviter les files d'attente.</p>
-                        <div class="row">
-                            <div class="col-md-4 mb-4">
-                                <div class="card h-100">
-                                    <img class="card-img-top" src="/gr_cu/static/img/res_icon.png"  alt="Card image cap"/>
-                                    <div class="card-body">
-                                        <h2 class="card-title">Réservation</h2>
-                                        <p class="card-text">Réservez votre repas en quelques clics.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-4">
-                                <div class="card h-100">
-                                    <img class="card-img-top" src="/gr_cu/static/img/espace.jpg" alt=""/>
-                                    <div class="card-body">
-                                        <h2 class="card-title">Espace Résident</h2>
-                                        <p class="card-text">Connecter à votre compte, charger votre solde et personaliser vos réservations .</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-4">
-                                <div class="card h-100">
-                                    <img class="card-img-top" src="/gr_cu/static/img/contact.png"  alt=""/>
-                                    <div class="card-body">
-                                        <h2 class="card-title">Contact</h2>
-                                        <p class="card-text">Besoin d'aide ou d'informations complémentaires ? Contactez-nous.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </section>
             </main>
