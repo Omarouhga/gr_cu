@@ -153,7 +153,8 @@
                                                 <h6>
                                                     <b>
                                                         <th>Type</th>
-                                                        <th>Date</th>
+                                                        <th>Date de consommation</th>
+                                                        <th>Date de résérvation</th>
                 
                                                     </b>
                                                 </h6>
@@ -164,6 +165,8 @@
                                                <tr>
                                                     <td><span t-esc="order.type"></span></td>
                                                     <td><span t-esc="order.date_consommation"></span></td>
+                                                    <td><span t-esc="order.date_reservation"></span></td>
+
                                                </tr> 
                                             </t>
                                         </tbody>
