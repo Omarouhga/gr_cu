@@ -15,7 +15,9 @@ class EspaceEtudiantController(http.Controller):
             user = request.env['cu.resident'].sudo().search([('code_massar', '=', code_massar)])
 
             if user.sudo().password != new_password or user.sudo().email != new_email or user.sudo().phone != new_phone:
-                user.sudo().write({'email': new_email, 'phone': new_phone, 'password': new_password})
+                user.sudo().write({'email': new_email,
+                                    'phone': new_phone, 
+                                    'password': new_password})
                 message = '1'
             else:
                 message = '0'

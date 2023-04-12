@@ -17,8 +17,8 @@ class CUResident(models.Model):
     reservations = fields.One2many('cu.reservation','resident_id',string="reservation")
     solde = fields.Integer(string="Solde")
     apogee=fields.Integer(String="Apogee")
-    verification = False
-
+    account_actived = fields.Boolean(string='compte activé',default=False) 
+    confirmation_token = fields.Char(string='Confirmation token')
     def validate_mail(self):
         if self.email:
             match = re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', self.email)

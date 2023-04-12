@@ -60,7 +60,10 @@
 							<group><field name="solde"/></group>
 							<group><field name="hex_id"/></group>
 						</group>
-						
+						<group>
+							<group><field name="account_actived"  /></group>
+							<group><field name="confirmation_token" /></group>
+						</group>
 					</sheet>
 					
 				</form>

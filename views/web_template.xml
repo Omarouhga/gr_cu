@@ -41,5 +41,101 @@
             </div>
         </t>
     </template>
+    <template id="confirmation_sent_template">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1>Email Confirmation Sent</h1>
+                <p>An email has been sent to <t t-esc="email"/> with a link to confirm your account.</p>
+            </div>
+        </t>
+    </template>
+    <template id="confirmation_email_template">
+        <t t-call="email_template.email_layout">
+            <t t-set="message_subject">Confirm Your Account</t>
+            <t t-set="message_body">
+                <p>Hello,</p>
+                <p>Please click on the following link to confirm your account:</p>
+                <p><a t-attf-href="{{ confirmation_url }}">Confirm Account</a></p>
+            </t>
+        </t>
+    </template>
+    <template id="create_password_template">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1>Create Your Password</h1>
+                <form method="post" t-att-action="password_action_url">
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" id="password" class="form-control" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password_confirmation">Confirm Password:</label>
+                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Create Password</button>
+                    </div>
+                    <input type="hidden" name="token" t-att-value="token"/>
+                </form>
+            </div>
+        </t>
+    </template>
+    
+    
+        <template id="activer_compte">
+          <t t-call="website.layout">
+            <head>
+              <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+              <style>
+                /* CSS personnalisé */
+                html, body {
+                  height: 100%;
+                }
+      
+                .center-vh {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  height: 100%;
+                }
+              </style>
+            </head>
+            <body>
+              
+            
+              <div class="center-vh">
+                <div class="container">
+                  <div class="row justify-content-center">
+                    <div class="col-md-6">
+                      <div class="card">
+                        <div class="card-header">
+                          <center><h4>Activer mon compte</h4></center>
+                        </div>
+                        <div class="card-body">
+                          <form method="post" action="/auth/activer">
+                            <div class="form-group">
+                              <label for="email"> Email:</label>
+                              <input type="text" id="email" name="email" class="form-control" />
+                            </div>
+                            <!-- <div class="form-group">
+                              <label for="phone">Mot de passe:</label>
+                              <input type="text" id="phone" name="phone" class="form-control" />
+                            </div> -->
+                            <button type="submit" class="btn btn-primary btn-block">Activer</button>
+                            <!-- <t t-if="error">
+                              <center><div class="text-danger" t-esc="error"></div></center>
+                            </t> -->
+                          </form>
+                          <!-- <center><p class="mt-3 mb-0">Pas encore inscrit ? <a href="/auth/activer">Activater mon compte</a>.</p></center> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </body>
+          </t>
+        </template>
+      
 
 </odoo>

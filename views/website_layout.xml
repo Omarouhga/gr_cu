@@ -46,6 +46,7 @@
         </xpath>
         
     </template>
+
     <template id="custom_homepage" inherit_id="website.homepage">
         <xpath expr="//div[@id='wrap']" position="replace">
             <main>
@@ -120,7 +121,9 @@
             </div>
         </t>
     </template>
-
+   
+    
+    
     
 
 
