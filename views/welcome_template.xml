@@ -21,10 +21,13 @@
                 var calendarEl = document.getElementById('calendar');
                 var events = []; // define an empty array to store events
                 <t t-foreach="reservations" t-as="order">
+                    var color = '<t t-if="order.type == 'DJ'">green</t><t t-elif="order.type == 'D'">red</t><t t-else="">blue</t>';
+                    var title = '<t t-if="order.type == 'DJ'">Dejeune</t><t t-elif="order.type == 'D'">Diner</t><t t-else="">--</t>';
                     var event = {
-                        title: '<t t-esc="order.type" />',
+                        title: title,
                         start: '<t t-esc="order.date_consommation" />',
-                        end: '<t t-esc="order.date_consommation" />'
+                        end: '<t t-esc="order.date_consommation" />',
+                        color: color
                     };
                     events.push(event); 
                     console.log(events); 
@@ -163,6 +166,7 @@
                                     <center><h4>Réserver</h4></center>
                                 </div>
                                 <div class="card-body">
+                                    <div id='calendar'></div> 
                                 </div>
                             </div>
                         </div>
@@ -187,13 +191,13 @@
                                         <tbody>
                                             <t t-foreach="reservations" t-as="order">
                                                <tr>
-                                                    <td><span t-esc="order.type"></span></td>
+                                                    <td><t t-if="order.type == 'DJ'">Dejeune</t><t t-elif="order.type == 'D'">Diner</t><t t-else="">--</t></td>
                                                     <td><span t-esc="order.date_consommation"></span></td>
                                                </tr>
                                             </t>
                                         </tbody>
                                     </table>
-                                    <div id='calendar'></div> 
+                                    <div id='calendar'></div>
                                 </div>
                             </div>
                         </div>
