@@ -111,6 +111,13 @@
                         <div class="card-header">
                           <center><h4>Activer mon compte</h4></center>
                         </div>
+                        <t t-if="message == True">
+                            <center><div class="alert alert-success mt-3">Consulter votre boîte mail pour récupérer votre mot de passe.</div></center>
+                        </t>
+                        <t t-if="message == False">
+                            <center><div  class="alert alert-danger mt-3">Votre compte est déja activé</div></center><br/>
+                            <center><p class="mt-3 mb-0">Mot de passe oublié ? <a href="#">Activater mon compte</a>.</p></center>
+                        </t>
                         <div class="card-body">
                           <form method="post" action="/auth/activer">
                             <div class="form-group">
@@ -118,8 +125,8 @@
                               <input type="text" id="email" name="email" class="form-control" />
                             </div>
                             <!-- <div class="form-group">
-                              <label for="phone">Mot de passe:</label>
-                              <input type="text" id="phone" name="phone" class="form-control" />
+                              <label for="date_naissance">Mot de passe:</label>
+                              <input type="text" id="date_naissance" name="date_naissance" class="form-control" />
                             </div> -->
                             <button type="submit" class="btn btn-primary btn-block">Activer</button>
                             <!-- <t t-if="error">

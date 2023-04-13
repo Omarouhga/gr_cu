@@ -11,6 +11,8 @@ class CUResident(models.Model):
     gender=fields.Selection([('F','Femme'),('Ma.','Homme'),('u','autre')],required=True,string="Genre")
     phone=fields.Char(string="Phone",required=True)
     email=fields.Char(string="Email")
+    date_naissance=fields.Date(string='Date de naissance')
+    date_residence=fields.Date(string='Date de résidence')
     password=fields.Char(strng="Password",required=True)
     code_massar=fields.Char(strng="Code Appoge",required=True)
     hex_id = fields.Char(string="HEX ID")

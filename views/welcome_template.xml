@@ -63,6 +63,12 @@
                                 <div class="card-header">
                                     <center><h4>Mes informations</h4></center>
                                 </div>
+                                <t t-if="message == '1'">
+                                    <center><div class="alert alert-success mt-3">Vos informations sont actualisées avec succès.</div></center>
+                                </t>
+                                <t t-if="message == '0'">
+                                <center><div  class="alert alert-danger mt-3">Vous n'avez effectué aucun changement</div></center>
+                                </t>
                                 <div class="card-body">
                                     <form method="post" action="/espace_etudiant">
                                         <div class="form-group row">
@@ -125,12 +131,7 @@
                                                 <button type="submit" class="btn btn-primary">Submit</button>
                                             </div>
                                         </div>
-                                        <t t-if="message == '1'">
-                                            <center><div class="alert alert-success mt-3">Vos informations sont actualisées avec succès.</div></center>
-                                        </t>
-                                        <t t-if="message == '0'">
-                                        <center><div  class="alert alert-danger mt-3">Vous n'avez effectué aucun changement</div></center>
-                                        </t>
+                                       
                                          
                                     </form>
                                 </div>

@@ -7,14 +7,12 @@ class AccountConfirmationController(http.Controller):
 
     @http.route('/auth/activer',csrf=False, type='http', auth="public", website=True, sitemap=False)
     def confirm_account(self, **post):
+        account_actived=None
         if request.httprequest.method == 'POST':
             email = post.get('email')
             user = request.env['cu.resident'].sudo().search([('email', '=', email)])
             if not user:
-                raise UserError('User with email %s not found' % email)
-            if user.account_actived:
-                raise UserError('Email already confirmed for user %s' % user.name)
-            
+                raise UserError('User with email %s not found' % email) 
             token = str(uuid.uuid4())
             user.sudo().write({'password': token})
             confirmation_url = request.httprequest.host_url + 'auth/login'
@@ -42,16 +40,26 @@ class AccountConfirmationController(http.Controller):
                 )
 
 
-
+            
             
             mail_values = {
-                'subject': 'Activation de compte',
+                'subject': 'Activer votre compte Réstauration CU',
                 'body_html': body_html,
                 'email_from': 'omarouhga12@gmail.com',
                 'email_to': email,
             }
-            request.env['mail.mail'].sudo().create(mail_values).send()
-        return request.render('gr_cu.activer_compte')
+            if user.sudo().account_actived==False:
+                request.env['mail.mail'].sudo().create(mail_values).send()
+                account_actived=True
+                user.sudo().write({'account_actived': True})
+            else:
+                account_actived=False
+                
+
+            
+            
+        
+        return request.render('gr_cu.activer_compte',{'message':account_actived})
     
     @http.route('/create_password', type='http', auth='public', website=True)
     def create_password(self, token, **post):
