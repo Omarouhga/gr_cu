@@ -12,17 +12,28 @@ class CUAgent(models.Model):
     email=fields.Char(string="Email")
     
 
-    def validate_mail(self):
-        if self.email:
-            match = re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', self.email)
-            if match == None:
-                raise ValidationError('Not a valid E-mail ID')
-    
+    @api.constrains('phone')
     def check_phone_number(self):
         for rec in self:
             if rec.phone and len(rec.phone) != 10:
                 raise ValidationError("PHONE MUST HAVE 10 DIGIT !!!")
         return True
+
+    @api.model
+    def create(self, vals):
+        self.valid_email(vals.get('email'))
+        return super(CUAgent, self).create(vals)
+
+    def write(self, vals):
+        if 'email' in vals:
+            self.valid_email(vals.get('email'))
+        return super(CUAgent, self).write(vals)
+    
+    @api.model
+    def valid_email(self, email):
+        pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        if not re.match(pattern, email):
+            raise ValidationError('Invalid email address')
 
     @api.onchange("last_name","name")
     def compute_name(self):
