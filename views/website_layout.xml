@@ -3,25 +3,41 @@
 <odoo>
     <template id="layout_inherit_header" inherit_id="website.layout">
         <xpath expr="//header" position="replace">
-            <nav class="navbar navbar-expand-lg " >
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="#">CU</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                  <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/">Acceuil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/auth/login">Espace Résident</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/contact">Contacter-Nous</a>
-                        </li>
-                    </ul>
+                  <ul class="navbar-nav">
+                    <li id="home" class="nav-item">
+                      <a class="nav-link" href="/">Acceuil</a>
+                    </li>
+                    <li id="resident" class="nav-item">
+                      <a class="nav-link" href="/auth/login">Espace Résident</a>
+                    </li>
+                    <li id="contact" class="nav-item">
+                      <a class="nav-link" href="/contact">Contacter-Nous</a>
+                    </li>
+                  </ul>
                 </div>
-            </nav>
+              </nav>
+              
+              <script>
+                // Get the current path
+                var path = window.location.pathname;
+              
+                // Check which page is being displayed and add the "active" class to the corresponding nav item
+                if (path === "/") {
+                  document.getElementById("home").classList.add("active");
+                } else if (path === "/auth/login") {
+                  document.getElementById("resident").classList.add("active");
+                } else if (path === "/contact") {
+                  document.getElementById("contact").classList.add("active");
+                }
+              </script>
+              
+              
         </xpath>
     </template>
 
@@ -50,42 +66,27 @@
     <template id="custom_homepage" inherit_id="website.homepage">
         <xpath expr="//div[@id='wrap']" position="replace">
             <main>
-                <section class="py-5 text-center">
+                <section class="hero-section py-5 text-center">
                     <div class="container">
-                        <h1 class="display-4">Bienvenue à la restauration en lign de la Cité Universitaire</h1>
+                        <h1 class="display-4 mb-4">Bienvenue sur l'extranet de réservation de la Cité Universitaire</h1>
                         <p class="lead mb-5">Réservez vos repas à l'avance pour éviter les files d'attente.</p>
-                        <div class="row">
-                            <div class="col-md-4 mb-4">
-                                <div class="card h-100">
-                                    <img class="card-img-top" src="/gr_cu/static/img/res_icon.png"  alt="Card image cap"/>
-                                    <div class="card-body">
-                                        <h2 class="card-title">Réservation</h2>
-                                        <p class="card-text">Réservez votre repas en quelques clics.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-4">
-                                <div class="card h-100">
-                                    <img class="card-img-top" src="/gr_cu/static/img/espace.jpg" alt=""/>
-                                    <div class="card-body">
-                                        <h2 class="card-title">Espace Résident</h2>
-                                        <p class="card-text">Connecter à votre compte, charger votre solde et personaliser vos réservations .</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-4">
-                                <div class="card h-100">
-                                    <img class="card-img-top" src="/gr_cu/static/img/contact.png"  alt=""/>
-                                    <div class="card-body">
-                                        <h2 class="card-title">Contact</h2>
-                                        <p class="card-text">Besoin d'aide ou d'informations complémentaires ? Contactez-nous.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <a href="/auth/login" class="btn btn-primary btn-lg">Réserver maintenant</a>
                     </div>
                 </section>
+            
+                <section id="reservation" class="reservation-section py-5">
+                    <div class="container">
+                        <h2 class="section-heading mb-4">Réservez vos repas en ligne</h2>
+                        <p class="lead mb-5">Évitez les files d'attente en réservant vos repas en ligne à l'avance. Utilisez notre système de réservation simple et pratique pour commander vos repas.</p>
+                        <!-- Ajoutez le formulaire de réservation ici -->
+                    </div>
+                </section>
+                
+                
+                
             </main>
+            
+            
             
         </xpath>
     </template>

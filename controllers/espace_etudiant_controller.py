@@ -37,3 +37,4 @@ class EspaceEtudiantController(http.Controller):
         else:
             # Render an error page if no resident is found for the current user
             return request.render('gr_cu.error_template', {'error_message': 'Resident not found for current user'})
+    

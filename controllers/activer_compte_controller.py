@@ -14,7 +14,8 @@ class AccountConfirmationController(http.Controller):
             if not user:
                 raise UserError('User with email %s not found' % email) 
             token = str(uuid.uuid4())
-            user.sudo().write({'password': token})
+            user.sudo().write({'password': token,
+                               'confirmation_token':token})
             confirmation_url = request.httprequest.host_url + 'auth/login'
             body_html = """
                 <html>
@@ -48,19 +49,15 @@ class AccountConfirmationController(http.Controller):
                 'email_from': 'omarouhga12@gmail.com',
                 'email_to': email,
             }
-            if user.sudo().account_actived==False:
+            account_actived=user.sudo().account_actived
+           
+            if account_actived==False:
                 request.env['mail.mail'].sudo().create(mail_values).send()
-                account_actived=True
                 user.sudo().write({'account_actived': True})
-            else:
-                account_actived=False
-                
-
             
-            
-        
         return request.render('gr_cu.activer_compte',{'message':account_actived})
-    
+
+
     @http.route('/create_password', type='http', auth='public', website=True)
     def create_password(self, token, **post):
         user = request.env['cu.resident'].sudo().search([('confirmation_token', '=', token)])

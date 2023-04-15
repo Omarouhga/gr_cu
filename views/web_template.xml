@@ -111,10 +111,10 @@
                         <div class="card-header">
                           <center><h4>Activer mon compte</h4></center>
                         </div>
-                        <t t-if="message == True">
+                        <t t-if="message == False">
                             <center><div class="alert alert-success mt-3">Consulter votre boîte mail pour récupérer votre mot de passe.</div></center>
                         </t>
-                        <t t-if="message == False">
+                        <t t-if="message == True">
                             <center><div  class="alert alert-danger mt-3">Votre compte est déja activé</div></center><br/>
                             <center><p class="mt-3 mb-0">Mot de passe oublié ? <a href="#">Activater mon compte</a>.</p></center>
                         </t>

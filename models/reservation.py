@@ -6,10 +6,10 @@ from datetime import datetime
 class CUReservation(models.Model):
     _name="cu.reservation"
     
-    resident_id = fields.Many2one('cu.resident',string="Résident",required=True)
-    date_reservation = fields.Date(string="Date de réservation",default=datetime.today(),required=True)
-    date_consommation=fields.Date(string="Date de consommation",required=True)
-    type = fields.Selection([('DJ','déjeuner'),('D','Diner')],required=True,string="Type")
+    resident_id = fields.Many2one('cu.resident',string="Résident" )
+    date_reservation = fields.Date(string="Date de réservation",default=datetime.today() )
+    date_consommation=fields.Date(string="Date de consommation" )
+    type = fields.Selection([('DJ','déjeuner'),('D','Diner')] ,string="Type")
     
     def validate_mail(self):
         if self.email:
