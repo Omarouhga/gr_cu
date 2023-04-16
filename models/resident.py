@@ -17,7 +17,7 @@ class CUResident(models.Model):
     code_massar=fields.Char(strng="Code Appoge",required=True)
     hex_id = fields.Char(string="HEX ID")
     reservations = fields.One2many('cu.reservation','resident_id',string="reservation")
-    solde = fields.Integer(string="Solde")
+    solde = fields.Float(string="Solde")
     apogee=fields.Integer(String="Apogee")
     account_actived = fields.Boolean(string='compte activé',default=False) 
     confirmation_token = fields.Char(string='Confirmation token')

@@ -50,25 +50,26 @@ class EspaceEtudiantController(http.Controller):
             resident = request.env['cu.resident'].sudo().search([('code_massar', '=', code_massar)])
             date_consommation = datetime.strptime(date_start, '%Y-%m-%d')
             print(dejeuner)
-            while date_consommation <= (datetime.strptime(date_end, '%Y-%m-%d')-timedelta(days=1)):
-                if date_consommation.weekday() != 6 and resident:
+            while date_consommation <= (datetime.strptime(date_end, '%Y-%m-%d')-timedelta(days=1)) and resident:
+                if date_consommation.weekday() != 6:
                     pre_DJ = request.env['cu.reservation'].sudo().search([('resident_id', '=', resident.id),('date_consommation', '=', date_consommation.date()),('type', '=', 'DJ')])
                     pre_D = request.env['cu.reservation'].sudo().search([('resident_id', '=', resident.id),('date_consommation', '=', date_consommation.date()),('type', '=', 'D')])
-                    if (not pre_DJ) and dejeuner:
+                    if (not pre_DJ) and dejeuner and resident.solde>=1.4:
                         reservation = request.env['cu.reservation'].sudo().create({
                         'resident_id': resident.id,
-                        'test': dejeuner,
                         'date_consommation': date_consommation.date(),
                         'type': 'DJ'
                         })
+                        resident.solde-=1.4
 
-                    if not pre_D and diner and date_consommation.weekday() != 5 and resident:
+                    if not pre_D and diner and date_consommation.weekday() != 5 and resident.solde>=1.4:
                         reservation = request.env['cu.reservation'].sudo().create({
                         'resident_id': resident.id,
-                        'test': diner,
                         'date_consommation': date_consommation.date(),
                         'type': 'D'
                         })
+                        resident.solde-=1.4
+
                 date_consommation += timedelta(days=1)
                 
             return request.redirect('/welcome')
