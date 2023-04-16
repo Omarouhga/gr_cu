@@ -45,7 +45,7 @@ class CUAgent(models.Model):
 
     @api.model
     def valid_email(self, email):
-        pattern = re.match('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', self.email)
+        pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
         if not re.match(pattern, email):
             raise ValidationError('Invalid email address')
 
