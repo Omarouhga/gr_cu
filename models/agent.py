@@ -4,6 +4,7 @@ import re
 
 class CUAgent(models.Model):
     _name="cu.agent"
+    _inherit=['mail.thread','mail.activity.mixin']
     _rec_name="name"
 
     name=fields.Char(string="Nom",required=True)
