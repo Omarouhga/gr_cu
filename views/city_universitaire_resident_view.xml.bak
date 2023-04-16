@@ -66,6 +66,28 @@
 				</form>
 			</field>
 		</record>
+
+		<record id="resident_kanban" model="ir.ui.view">
+			<field name="name">cu.resident.kanban</field>
+			<field name="model">cu.resident</field>
+			<field name="arch" type="xml">
+				<kanban>
+					<field name="name"/>
+					<field name="last_name"/>
+					<field name="email"/>
+					<field name="code_massar"/>
+					<field name="hex_id"/>
+				</kanban>
+			</field>
+		</record>
+
+
+
+
+
+
+
+
 		<record model="ir.actions.server" id="action_charger_solde">
 			   <field name="name">charger solde</field>
 			   <field name="model_id" ref="cu.resident"/>
@@ -80,7 +102,7 @@
 		<record id="resident_actw" model="ir.actions.act_window">
 			<field name="name">resident</field>
 			<field name="res_model">cu.resident</field>
-			<field name="view_mode">tree,form</field>
+			<field name="view_mode">tree,form,kanban</field>
 			<field name="help" type="html">
 						<p class="o_view_nocontent_smiling_face">
 							cliquer sur créer pour ajouter un nouveau resident

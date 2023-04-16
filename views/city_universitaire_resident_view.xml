@@ -75,6 +75,20 @@
 			</field>
 		</record>
 
+		<record id="resident_kanban" model="ir.ui.view">
+			<field name="name">cu.resident.kanban</field>
+			<field name="model">cu.resident</field>
+			<field name="arch" type="xml">
+				<kanban>
+					<field name="name"/>
+					<field name="last_name"/>
+					<field name="email"/>
+					<field name="code_massar"/>
+					<field name="hex_id"/>
+				</kanban>
+			</field>
+		</record>
+
 		 
 
 		

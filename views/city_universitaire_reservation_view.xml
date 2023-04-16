@@ -9,7 +9,7 @@
                     <field name="resident_id"/>
                     <field name="date_reservation"/>
                     <field name="type"/>
-                    <field name="date_consommation"></field>
+                    <field name="date_consommation"/>
                 </search>
             </field>
         </record>
@@ -21,7 +21,7 @@
                     <field name="resident_id"/>
                     <field name="date_reservation"/>
                     <field name="type"/>
-                    <field name="date_consommation"></field>
+                    <field name="date_consommation"/>
                 </tree>
             </field>
         </record>
@@ -29,29 +29,39 @@
             <field name="name">cu.reservation.form</field>
             <field name="model">cu.reservation</field>
             <field name="arch" type="xml">
-                
-                    <form>
-                        <sheet> 
+                <form>
+                    <sheet> 
+                        <group>
                             <group>
-                                <group>
-                                    <field name="resident_id"/>
-                                    <field name="date_reservation" readoly="True"/>
-                                </group>
-                                <group>
-                                    <field name="date_consommation"></field>
-                                    <field name="type"/>
-                                </group>
+                                <field name="resident_id"/>
+                                <field name="date_reservation" readoly="True"/>
                             </group>
-                        
+                            <group>
+                                <field name="date_consommation"/>
+                                <field name="type"/>
+                            </group>
+                        </group>
                     </sheet>
-                    </form>
-                
+                </form>
             </field>
         </record>
+
+        <record model="ir.ui.view" id="reservation_graph">
+    <field name="name">cu.reservation.graph</field>
+    <field name="model">cu.reservation</field>
+    <field name="arch" type="xml">
+        <graph string="Reservation Graph">
+           <field name="date_consommation"/>
+            <field name="type"/>
+        </graph>
+    </field>
+</record>
+
+
         <record id="reservation_actw" model="ir.actions.act_window">
             <field name="name">reservation</field>
             <field name="res_model">cu.reservation</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,graph</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Cliquer sur créer pour ajouter un nouvelle réservation
