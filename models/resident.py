@@ -25,6 +25,7 @@ class CUResident(models.Model):
     
     
     @api.constrains('phone')
+    @api.constrains('phone')
     def check_phone_number(self):
         for rec in self:
             if rec.phone and len(rec.phone) != 10:
@@ -71,9 +72,14 @@ class CUResident(models.Model):
     def modifier_reservation():
         return 0
     
-    def transferer_solde():
-        return 0
+    # @api.multi
+    # def write(self, values):
+    #     for rec in self:
+    #         if rec.password!=rec.confirmation_token:
+    #             values={'account_actived':True}
     
+    #     return super(CUResident, self).write(values)
+        
     
     
     
