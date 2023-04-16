@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <odoo>
     <template id="welcome_template">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></link>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
         <script>
             function togglePasswordVisibility() {
@@ -15,6 +20,20 @@
                 visibilityButton.textContent = "Show";
               }
             }
+            <!-- this code of the toggel button that desnt work ( i also commented the code in in the py file and in this xml file flt7t -->
+            <!-- function toggleButton(buttonId) {
+                var button = document.getElementById(buttonId);
+                button.classList.toggle("active");
+                // Log the current state of the button
+                button.value="0"
+                if (button.classList.contains("active")){
+                    button.value="1"
+                }
+                console.log(button.value);
+              } -->
+              
+              
+
             function Charger_solde(){}
             
             document.addEventListener('DOMContentLoaded', function() {
@@ -30,7 +49,6 @@
                         color: color
                     };
                     events.push(event); 
-                    console.log(events); 
                 </t>
                 var calendar = new FullCalendar.Calendar(calendarEl, {
                     initialView: 'dayGridMonth',
@@ -45,7 +63,59 @@
                 calendar.render();
             });
           </script>
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var calendarEl2 = document.getElementById('calendar2');
+                var dj = document.getElementById("DJ");
+                var d = document.getElementById("D");
+                var today = new Date();
+                var date_start = document.getElementById("start_date");
+                var date_end = document.getElementById("end_date");
+                var calendar = new FullCalendar.Calendar(calendarEl2, {
+                  headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    },
+                    initialView: 'dayGridMonth',
+                    navLinks: true, // can click day/week names to navigate views
+                    selectable: true,
+                    selectMirror: true,
+                    validRange: {
+                        start: today,
+                        end: '2100-01-01',
+                        daysOfWeek: [0, 1, 2, 3, 4, 5] // remove Saturday (6)
+                      },
+                    <!-- weekends: false, --> 
+                    <!-- this weekends remove sun and sat -->
+                    hiddenDays: [6],
+                    selectConstraint: {
+                        start: '2022-09-12T09:00:00',
+                        end: '2023-07-15T14:30:00',
+                    },
+                    select: function(start,end,allDays) {
+                        var type=$('#type').val();
+                        var start_date = moment(start).format('YYYY-MM-DD');
+                        var end_date = moment(end).format('YYYY-MM-DD');
+                        var starti = document.getElementById("start_date");
+                        var endi = document.getElementById("end_date");
+                        starti.value = start.startStr;
+                        endi.value = start.endStr;
+                        $('#reserveModal').modal('toggle');
+                        $('#saveBtn').click(function(){
+                        });              
+                    }
+                });
+                calendar.render();
+            });
+          </script>    
           <t t-call="website.layout">
+            <style>
+                .form-check-input{
+                    background-color: #5cb85c;
+                    border-color: #5cb85c;
+                  }
+            </style>
             <t t-set="res" t-value="records[0]"/>
             <div class="row">
                 <div class="col-2">
@@ -166,9 +236,53 @@
                                     <center><h4>Réserver</h4></center>
                                 </div>
                                 <div class="card-body">
-                                    
-                                </div>
-                            </div>
+                                    <div id="calendar2"></div>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="reserveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Reserver</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">Close</button>
+                                            </div>
+                                        <form method="post" action="/reservation">
+                                        <div class="modal-body">
+                                            <div class="form-group d-none">
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" name="code_massar" id="code_massar" t-att-value="res.code_massar" readonly="true"/>
+                                                </div>
+                                            </div>                                            
+                                            <label for="type" class="col-sm-2 col-form-label">Type</label>
+                                            <!-- <button type="button" class="btn btn-outline-primary" name="DJ" id="DJ" value="0" onclick="toggleButton('DJ')">Dejeuner</button>
+                                            <button type="button" class="btn btn-outline-success" name="D" id="D" value="0" onclick="toggleButton('D')">Diner</button> -->
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="DJ" name="DJ"/>
+                                                <label class="form-check-label" for="checkbox1" name="DJ">Dejeuner</label>
+                                            </div>
+
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="D" name="D"/>
+                                                <label class="form-check-label" for="checkbox2" name="D">Diner</label>
+                                            </div>
+                                            
+                                            <br>
+                                                <label for="start_date" class="col-sm-2 col-form-label">Start Date</label>
+                                                <input type="date" class="form-control" id="start_date" name="start_date" />
+                                            </br>
+                                                <label for="end_date" class="col-sm-2 col-form-label">End Date</label>
+                                                <input type="date" class="form-control" id="end_date" name="end_date" />
+                                            
+                                            </div>                                                  
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button class="btn btn-primary" type="submit" value="Submit">Save changes</button>
+                                            </div> 
+                                        </form>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>                       
                         </div>
                         <div class="tab-pane fade" id="v-pills-mes-reservations" role="tabpanel" aria-labelledby="v-pills-mes-reservations-tab">
                             <div class="card">
