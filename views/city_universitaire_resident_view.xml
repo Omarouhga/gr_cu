@@ -38,6 +38,7 @@
 								class="oe_highlight"/>
 					</header>
 					<sheet>
+					<field name="image" widget="image" class="oe_avatar"/>
 						<group>
 								<group><field name="name" placeholder="enter your Name"/></group>
 								<group><field name="last_name" placeholder="enter your Last Name"/></group>
@@ -60,18 +61,23 @@
 							<group><field name="solde"/></group>
 							<group><field name="hex_id"/></group>
 						</group>
-						
+						<group>
+							<group><field name="account_actived"  /></group>
+							<group><field name="confirmation_token" /></group>
+						</group>
 					</sheet>
 					
 				</form>
 			</field>
 		</record>
-		
+
+		 
+
 		
 		<record id="resident_actw" model="ir.actions.act_window">
 			<field name="name">resident</field>
 			<field name="res_model">cu.resident</field>
-			<field name="view_mode">tree,form</field>
+			<field name="view_mode">tree,form,kanban</field>
 			<field name="help" type="html">
 						<p class="o_view_nocontent_smiling_face">
 							cliquer sur créer pour ajouter un nouveau résident

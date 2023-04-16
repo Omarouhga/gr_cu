@@ -9,7 +9,7 @@
                     <field name="name"/>
                     <field name="last_name"/>
                     <field name="phone"/>
-                    <field name="email"></field>
+                    <field name="email"/>
                 </search>
             </field>
         </record>
@@ -21,37 +21,46 @@
                     <field name="name"/>
                     <field name="last_name"/>
                     <field name="phone"/>
-                    <field name="email"></field>
+                    <field name="email"/>
                 </tree>
+            </field>
+        </record>
+        <record id="cu_agent_kanban" model="ir.ui.view">
+            <field name="name">cu.agent.kanban</field>
+            <field name="model">cu.agent</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="last_name"/>
+                    <field name="email"/>
+                </kanban>
             </field>
         </record>
         <record id="cu_agent_form" model="ir.ui.view">
             <field name="name">cu.agent.form</field>
             <field name="model">cu.agent</field>
             <field name="arch" type="xml">
-                
-                    <form>
-                        <sheet> 
+                <form>
+                    <sheet> 
+                        <field name="image" widget="image" class="oe_avatar"/>
+                        <group>
                             <group>
-                                <group>
-                                    <field name="name"/>
-                                    <field name="last_name"/>
-                                </group>
-                                <group>
-                                    <field name="phone"/>
-                                    <field name="email"></field>
-                                </group>
+                                <field name="name"/>
+                                <field name="last_name"/>
                             </group>
-                        
+                            <group>
+                                <field name="phone"/>
+                                <field name="email"/>
+                            </group>
+                        </group>
                     </sheet>
-                    </form>
-                
+                </form>
             </field>
         </record>
         <record id="cu_agent_actw" model="ir.actions.act_window">
             <field name="name">agent</field>
             <field name="res_model">cu.agent</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,kanban,form</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Cliquer sur créer pour ajouter un nouveau agent
