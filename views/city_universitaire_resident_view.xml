@@ -38,7 +38,7 @@
 								class="oe_highlight"/>
 					</header>
 					<sheet>
-					<field name="image" widget="image" class="oe_avatar"/>
+					<field name="image_resident" widget="image" class="oe_avatar"/>
 						<group>
 								<group><field name="name" placeholder="enter your Name"/></group>
 								<group><field name="last_name" placeholder="enter your Last Name"/></group>
@@ -74,10 +74,47 @@
 				</form>
 			</field>
 		</record>
+		<record id="view_cu_resident_kanban" model="ir.ui.view">
+            <field name="name">cu.resident.kanban</field>
+            <field name="model">cu.resident</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="last_name"/>
+                    <field name="phone"/>
+                    <field name="image_resident"/>
+					<field name="code_massar"/>
+					<templates>
+						<t t-name="kanban-box">
+							<div class="oe_kanban_global_click">
+								<div class="oe_kanban_details">
+									<div class="o_kanban_image">
+										<img alt="Avatar" 
+										class="o_kanban_image_inner_pic" 
+										t-att-src="kanban_image('cu.resident','image_resident', record.id.raw_value)"/>
+									</div>
+									<ul>
+										<li>
+											<strong>
+												Resident : <field name="name"/> <field name="last_name"/> 
+											</strong>
+										</li>
+										<li>
+											Code Massar : <field name="code_massar"/>
+										</li>
+										<li>
+											Phone : <field name="phone"/> 
+										</li>
+									</ul>
+								</div>
+							</div>
+						</t>
+					</templates>
+                </kanban>
+            </field>
+        </record>
 
-		 
-
-		
 		<record id="resident_actw" model="ir.actions.act_window">
 			<field name="name">resident</field>
 			<field name="res_model">cu.resident</field>
@@ -88,5 +125,6 @@
 						</p>
 			</field>
 		</record>
+
 	</data>
 </odoo>

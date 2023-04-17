@@ -22,7 +22,7 @@ class CUResident(models.Model):
     apogee=fields.Integer(String="Apogee")
     account_actived = fields.Boolean(string='compte activé',default=False) 
     confirmation_token = fields.Char(string='Confirmation token')
-    image = fields.Image(string="Image")
+    image_resident = fields.Image(string="Image")
     
     
     @api.constrains('phone')
