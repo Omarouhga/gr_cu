@@ -47,16 +47,15 @@
         </record>
 
         <record model="ir.ui.view" id="reservation_graph">
-    <field name="name">cu.reservation.graph</field>
-    <field name="model">cu.reservation</field>
-    <field name="arch" type="xml">
-        <graph string="Reservation Graph">
-           <field name="date_consommation"/>
-            <field name="type"/>
-        </graph>
-    </field>
-</record>
-
+            <field name="name">cu.reservation.graph</field>
+            <field name="model">cu.reservation</field>
+            <field name="arch" type="xml">
+                <graph string="Reservation Graph" type='bar' >
+                    <field name="date_consommation" interval="day"/>
+                    <field name="type"/>
+                </graph>
+            </field>
+        </record>   
 
         <record id="reservation_actw" model="ir.actions.act_window">
             <field name="name">reservation</field>
