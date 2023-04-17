@@ -34,7 +34,7 @@
 					<header>
 						<button name="%(cugr_charger_solde_actw)d" 
 								string="Charger le solde" 
-								type="action" 
+								type="action"  
 								class="oe_highlight"/>
 					</header>
 					<sheet>
