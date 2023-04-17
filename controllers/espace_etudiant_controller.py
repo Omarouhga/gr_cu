@@ -49,7 +49,6 @@ class EspaceEtudiantController(http.Controller):
             code_massar = post.get('code_massar')
             resident = request.env['cu.resident'].sudo().search([('code_massar', '=', code_massar)])
             date_consommation = datetime.strptime(date_start, '%Y-%m-%d')
-            print(dejeuner)
             while date_consommation <= (datetime.strptime(date_end, '%Y-%m-%d')-timedelta(days=1)) and resident:
                 if date_consommation.weekday() != 6:
                     pre_DJ = request.env['cu.reservation'].sudo().search([('resident_id', '=', resident.id),('date_consommation', '=', date_consommation.date()),('type', '=', 'DJ')])
