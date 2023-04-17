@@ -33,6 +33,7 @@
                     <field name="id"/>
                     <field name="name"/>
                     <field name="last_name"/>
+                    <field name="phone"/>
                     <field name="email"/>
                     <field name="image"/>
 					<templates>
@@ -52,6 +53,9 @@
 										</li>
 										<li>
                                             Email : <field name="email"/>
+										</li>
+                                        <li>
+                                            Phone : <field name="phone"/>
 										</li>
 									</ul>
 								</div>

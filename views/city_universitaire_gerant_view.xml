@@ -50,10 +50,49 @@
                 
             </field>
         </record>
+        <record id="view_cu_gerant_kanban" model="ir.ui.view">
+            <field name="name">cu.gerant.kanban</field>
+            <field name="model">cu.gerant</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="last_name"/>
+                    <field name="email"/>
+                    <field name="image"/>
+					<templates>
+						<t t-name="kanban-box">
+							<div class="oe_kanban_global_click">
+								<div class="oe_kanban_details">
+									<div class="o_kanban_image">
+										<img alt="Avatar" 
+										class="o_kanban_image_inner_pic" 
+										t-att-src="kanban_image('cu.gerant','image', record.id.raw_value)"/>
+									</div>
+									<ul>
+										<li>
+											<strong>
+												Gerant : <field name="name"/> <field name="last_name"/> 
+											</strong>
+										</li>
+										<li>
+                                            Email : <field name="email"/>
+										</li>
+                                        <li>
+                                            Phone : <field name="phone"/>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</t>
+					</templates>
+                </kanban>
+            </field>
+        </record>
         <record id="cu_gerant_actw" model="ir.actions.act_window">
             <field name="name">gerant</field>
             <field name="res_model">cu.gerant</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,kanban,form</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Cliquer sur créer pour ajouter un nouveau gérant
