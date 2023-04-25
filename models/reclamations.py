@@ -4,11 +4,11 @@ import re
 
 class CUReclamation(models.Model):
     _name="cu.reclamation"
-    _rec_name="nom_complet"
+    _rec_name="name"
 
-    nom_complet=fields.Char(string="Nom complet",required=True)
-    sujet=fields.Char(string="Sujet",required=True)
-    message=fields.Char(string="Message",required=True)
+    name=fields.Char(string="Nom complet")
+    subject=fields.Char(string="Sujet")
+    message=fields.Text(string="Message")
     email=fields.Char(string="Email")
     
 

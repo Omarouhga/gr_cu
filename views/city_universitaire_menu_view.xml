@@ -6,6 +6,8 @@
 			<menuitem id="city_universitaire_reservation_view" name="Réservations"  parent="st_menu_root" action="reservation_actw" />
 			<menuitem id="city_universitaire_agent_view" name="Agents"  parent="st_menu_root" action="cu_agent_actw" />
 			<menuitem id="city_universitaire_gerant_view" name="Gérants"  parent="st_menu_root" action="cu_gerant_actw" />
+			<menuitem id="city_universitaire_reclamation_view" name="Réclamation"  parent="st_menu_root" action="cu_reclamation_actw" />
+
 			<!-- <menuitem id="plan_menu_view" name="Plan"  parent="st_menu_root" action="plan_actw"  /> -->
 			<!-- <menuitem id="dashboard_menu_view" name="Dashboard"  parent="st_menu_root" action="dashboard_actw" /> -->
 	</data>

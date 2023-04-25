@@ -6,8 +6,8 @@
             <field name="model">cu.reclamation</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="nom_complet"/>
-                    <field name="sujet"/>
+                    <field name="name"/>
+                    <field name="subject"/>
                     <field name="message"/>
                     <field name="email"></field>
                 </search>
@@ -18,8 +18,8 @@
             <field name="model">cu.reclamation</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="nom_complet"/>
-                    <field name="sujet"/>
+                    <field name="name"/>
+                    <field name="subject"/>
                     <field name="message"/>
                     <field name="email"></field>
                 </tree>
@@ -33,14 +33,12 @@
                     <form>
                         <sheet> 
                             <group>
-                                <group>
-                                    <field name="nom_complet"/>
-                                    <field name="sujet"/>
-                                </group>
-                                <group>
-                                    <field name="message"/>
+                                
+                                    <field name="name"/>
                                     <field name="email"></field>
-                                </group>
+                                    <field name="subject"/> 
+                                    <field name="message"/>
+                                
                             </group>
                         
                     </sheet>
