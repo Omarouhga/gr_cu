@@ -5,7 +5,7 @@ access_cu_gerant_admin,cu.gerant.admin,model_cu_gerant,admin_group,1,1,1,1
 access_cu_agent_admin,cu.agent.admin,model_cu_agent,admin_group,1,1,1,1
 access_cu_charger_admin,cu.charger.admin,model_cu_resident_solde,admin_group,1,1,1,1
 access_cu_reservation_agent,cu.reservation.agent,model_cu_reservation,agent_group,0,0,0,0
-access_cu_resident_agent,cu.resident.agent,model_cu_resident,agent_group,1,1,1,1
+access_cu_resident_agent,cu.resident.agent,model_cu_resident,agent_group,1,1,0,0
 access_cu_gerant_agent,cu.gerant.agent,model_cu_gerant,agent_group,0,0,0,0
 access_cu_agent_agent,cu.agent.agent,model_cu_agent,agent_group,0,0,0,0
 access_cu_charger_agent,cu.charger.agent,model_cu_resident_solde,agent_group,1,1,1,1
