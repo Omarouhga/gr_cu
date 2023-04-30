@@ -34,7 +34,9 @@
               
               
 
-            function Charger_solde(){}
+            function Charger_solde(){
+                 window.location.href = "";
+            }
             
             document.addEventListener('DOMContentLoaded', function() {
                 var calendarEl = document.getElementById('calendar');

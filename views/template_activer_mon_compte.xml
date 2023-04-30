@@ -1,46 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <template id="etud_data_temp" name="data etudiants">
-        
-        <t t-call="website.layout">
-            <div class="oe_structure">
-                <div class="container"><br/>
-                    <center>
-                       <h3>Les données des résidents</h3> 
-                    </center><br/>
-                    <table class="table-striped table">
-                        <thead style="font-size:18px;">
-                            <tr>
-                                <h6>
-                                    <b>
-                                        <th>Nom</th>
-                                        <th>prenom</th>
-                                        <th>email</th>
-                                        <th>num telefon</th>
-
-                                    </b>
-                                </h6>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <t t-foreach="records" t-as="order">
-                               <tr>
-                                    <td><span t-esc="order.name"></span></td>
-                                    <td><span t-esc="order.last_name"></span></td>
-                                    <td><span t-esc="order.email"></span></td>
-                                    <td><span t-esc="order.phone"></span></td>
-
-                                    
-                               </tr> 
-                            </t>
-                        </tbody>
-                    </table>
-
-                </div>
-            </div>
-        </t>
-    </template>
     <template id="confirmation_sent_template">
         <t t-call="website.layout">
             <div class="container">
@@ -80,8 +39,6 @@
             </div>
         </t>
     </template>
-    
-    
         <template id="activer_compte">
           <t t-call="website.layout">
             <head>

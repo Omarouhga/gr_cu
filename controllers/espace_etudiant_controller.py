@@ -76,3 +76,5 @@ class EspaceEtudiantController(http.Controller):
         else:
             return request.render('gr_cu.error_template', {'error_message': 'Invalid request method'})
 
+
+    

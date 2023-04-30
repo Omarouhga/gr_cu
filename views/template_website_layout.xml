@@ -92,43 +92,7 @@
     </template>
 
     
-    <template id="contact_us_page" name="Contacter-nous">
-        <t t-call="website.layout">
-            <div class="container my-5">
-                <h1 class="text-center mb-4">Contacter-nous</h1>
-                <t t-if="message == 1">
-                    <center><div class="alert alert-success mt-3">Votre réclamation a été envoyée avec succès. Nous vous contacterons pour régler votre situation</div></center>
-                </t>
-                <t t-if="message == 0">
-                    <center><div  class="alert alert-danger mt-3">La réclamation n'a pas été envoyée. Veuillez réessayer.</div></center><br/>
-                </t>
-                <div class="row">
-                    <div class="col-md-6 offset-md-3">
-                        <form method="post" action="/contact">
-                            <div class="form-group">
-                                <label for="name">Nom complet</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Votre nom complet"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Adresse email</label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Votre adresse email"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="subject">Sujet</label>
-                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Sujet de votre message"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Votre message"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Envoyer</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </t>
-    </template>
-   
+    
     
     
     
