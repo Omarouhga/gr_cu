@@ -2,7 +2,10 @@
 
 <odoo>
     <template id="welcome_template">
+        <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></link>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></link>
+
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -43,7 +46,7 @@
                 var events = []; // define an empty array to store events
                 <t t-foreach="reservations" t-as="order">
                     var color = '<t t-if="order.type == 'DJ'">green</t><t t-elif="order.type == 'D'">red</t><t t-else="">blue</t>';
-                    var title = '<t t-if="order.type == 'DJ'">Dejeune</t><t t-elif="order.type == 'D'">Diner</t><t t-else="">--</t>';
+                    var title = '<t t-if="order.type == 'DJ'">Dejeuné</t><t t-elif="order.type == 'D'">Diner</t><t t-else="">--</t>';
                     var event = {
                         title: title,
                         start: '<t t-esc="order.date_consommation" />',
@@ -110,8 +113,8 @@
                 });
                 calendar.render();
             });
-          </script>    
-          <t t-call="website.layout">
+          </script>  
+          </head>  
             <style>
                 .form-check-input{
                     background-color: #5cb85c;
@@ -120,14 +123,26 @@
             </style>
             <t t-set="res" t-value="records[0]"/>
             <div class="row">
-                <div class="col-2">
-                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link active" id="v-pills-informations-tab" data-toggle="pill" href="#v-pills-informations" role="tab" aria-controls="v-pills-informations" aria-selected="true">Mes informations</a>
-                        <a class="nav-link" id="v-pills-solde-tab" data-toggle="pill" href="#v-pills-solde" role="tab" aria-controls="v-pills-solde" aria-selected="false">Mon solde</a>
-                        <a class="nav-link" id="v-pills-reservation-tab" data-toggle="pill" href="#v-pills-reservation" role="tab" aria-controls="v-pills-reservation" aria-selected="false">Réserver</a>
-                        <a class="nav-link" id="v-pills-mes-reservations-tab" data-toggle="pill" href="#v-pills-mes-reservations" role="tab" aria-controls="v-pills-mes-reservations" aria-selected="false">Mes réservations</a>
-                    </div>
-                </div>
+              
+      <div class="col-2 mt-2 pl-4">
+  <div class="text-center  mb-4" >
+  <img src="/gr_cu/static/img/photo_de_profile.jpg" alt="User Image" class="rounded-circle" style=" width: 130px; height: 130px;" />
+</div>
+  <div class="d-flex flex-column h-100">
+    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <a class="nav-link active" id="v-pills-informations-tab" data-toggle="pill" href="#v-pills-informations" role="tab" aria-controls="v-pills-informations" aria-selected="true">Mes informations</a>
+      <a class="nav-link" id="v-pills-solde-tab" data-toggle="pill" href="#v-pills-solde" role="tab" aria-controls="v-pills-solde" aria-selected="false">Mon solde</a>
+      <a class="nav-link" id="v-pills-reservation-tab" data-toggle="pill" href="#v-pills-reservation" role="tab" aria-controls="v-pills-reservation" aria-selected="false">Réserver</a>
+      <a class="nav-link" id="v-pills-mes-reservations-tab" data-toggle="pill" href="#v-pills-mes-reservations" role="tab" aria-controls="v-pills-mes-reservations" aria-selected="false">Mes réservations</a>
+      <a class="nav-link" id="v-pills-charger-solde-tab" data-toggle="pill" href="#v-pills-charger-solde" role="tab" aria-controls="v-pills-charger-solde" aria-selected="false">Charger mon solde</a>
+      <div class="mt-auto">
+        <hr class="mt-auto"/>
+        <a class="nav-link" href="#">Déconnexion</a>
+      </div>
+    </div>
+  </div>
+</div>
+
                 <div class="col-10">
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-informations" role="tabpanel" aria-labelledby="v-pills-informations-tab">
@@ -319,10 +334,94 @@
                                 </div>
                             </div>
                         </div>
+                            <div class="tab-pane fade" id="v-pills-charger-solde" role="tabpanel" aria-labelledby="v-pills-charger-solde-tab">
+                        <div class="card">
+                        <div class="card-header">
+                            <center><h4>Charger mon solde</h4></center>
+                        </div>
+                        <div class="card-body">
+                            <div class="mx-auto" style="max-width: 400px;">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="card_name">Nom complet du porteur de la carte :</label>
+                                        <input type="text" class="form-control form-control-sm" id="card_name" name="card_name" required="True" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="card_number">Numéro de la carte :</label>
+                                        <input type="text" class="form-control form-control-sm" id="card_number" name="card_number" required="True" />
+                                    </div>
+                                    <div class="form-group">
+                                    <label>Date d'expiration :</label>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <select class="form-select"  style="width: 200px;" name="expiry_month" required="True">
+                                                <option value="" disabled="True" selected="True">Mois</option>
+                                                <option value="01">01</option>
+                                                <option value="02">02</option>
+                                                <option value="03">03</option>
+                                                <option value="04">04</option>
+                                                <option value="05">05</option>
+                                                <option value="06">06</option>
+                                                <option value="07">07</option>
+                                                <option value="08">08</option>
+                                                <option value="09">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-6">
+                                            <select style="width: 200px;" class="form-select" name="expiry_year" required="True">
+                                                <option value="" disabled="True" selected="True">Année</option>
+                                                <option value="2023">2023</option>
+                                                <option value="2024">2024</option>
+                                                <option value="2025">2025</option>
+                                                <option value="2026">2026</option>
+                                                <option value="2027">2027</option>
+                                                <option value="2028">2028</option>
+                                                <option value="2029">2029</option>
+                                                <option value="2030">2030</option>
+                                                <option value="2031">2031</option>
+                                                <option value="2032">2032</option>
+                                                <option value="2033">2033</option>
+                                                <option value="2034">2034</option>
+                                                <option value="2035">2035</option>
+                                                <option value="2036">2036</option>
+                                                <option value="2037">2037</option>
+                                                <option value="2038">2038</option>
+                                                <option value="2039">2039</option>
+                                                <option value="2040">2040</option>
+                                                <option value="2041">2041</option>
+                                                <option value="2042">2042</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label for="cvv">CVV :</label>
+                                        <input type="text" class="form-control form-control-sm" id="cvv" name="cvv" required="True" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="amount">Montant à payer :</label>
+                                        <input type="text" class="form-control form-control-sm" id="amount" name="amount" required="True" />
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-block">Payer</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </t>
+
+
+
+
+                </div>
+             </div>
+
+        </div>
+                
+            
+        
     </template>
     <template id="success_message">
         <div class="alert alert-success">
