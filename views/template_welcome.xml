@@ -9,7 +9,7 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
+        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js'></script>
         <script>
             function togglePasswordVisibility() {
               var passwordField = document.getElementById("password");
@@ -55,6 +55,9 @@
                     };
                     events.push(event); 
                 </t>
+                var type_meal = document.getElementById("type_meal");
+                var ev_start = document.getElementById("ev_start");
+                var today = new Date();
                 var calendar = new FullCalendar.Calendar(calendarEl, {
                     initialView: 'dayGridMonth',
                     headerToolbar: {
@@ -63,7 +66,27 @@
                         right: 'dayGridMonth'
                     },
                     editable: false,
-                    events: events 
+                    events: events ,
+                    validRange: {
+                        start: today,
+                        end: '2100-01-01',
+                        daysOfWeek: [0, 1, 2, 3, 4, 5] // remove Saturday (6)
+                      },
+                    eventClick: function(info) {
+                        if(info.event.title=="Dejeune"){
+                            type_meal.value = "DJ";
+                        }else{
+                            type_meal.value = "D";
+                        }
+                        ev_start.value=info.event.startStr;
+                        var dateValide = new Date(ev_start.value)
+                        console.log(today)
+
+                        if (dateValide.getTime() > today.getTime()) {
+                            $('#EditeReserveModal').modal('toggle');
+                        }
+                        
+                    }
                 });
                 calendar.render();
             });
@@ -100,8 +123,8 @@
                     },
                     select: function(start,end,allDays) {
                         var type=$('#type').val();
-                        var start_date = moment(start).format('YYYY-MM-DD');
-                        var end_date = moment(end).format('YYYY-MM-DD');
+                        <!-- var start_date = moment(start).format('YYYY-MM-DD'); -->
+                        <!-- var end_date = moment(end).format('YYYY-MM-DD'); -->
                         var starti = document.getElementById("start_date");
                         var endi = document.getElementById("end_date");
                         starti.value = start.startStr;
@@ -331,6 +354,33 @@
                                         </tbody>
                                     </table>
                                     <div id='calendar'></div>
+                                    <div class="modal fade" id="EditeReserveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Reserver</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">Close</button>
+                                            </div>
+                                        <form method="post" action="/EditeReservation">
+                                        <div class="modal-body">
+                                            <div class="form-group d-none">
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" name="code_massar" id="code_massar" t-att-value="res.code_massar" readonly="true"/>
+                                                </div>
+                                            </div>
+                                            <label for="text" class="col-sm-2 col-form-label">Type</label>
+                                                <input type="text" class="form-control" id="type_meal" name="type_meal" readonly="true"/>
+                                                <label for="ev_start" class="col-sm-2 col-form-label">Date</label>
+                                                <input type="date" class="form-control" id="ev_start" name="ev_start" readonly="true"/>
+                                            </div>                                                  
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button class="btn btn-primary" type="submit" value="Submit">Delete the reservation</button>
+                                            </div> 
+                                        </form>
+                                        </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

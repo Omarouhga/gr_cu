@@ -76,5 +76,20 @@ class EspaceEtudiantController(http.Controller):
         else:
             return request.render('gr_cu.error_template', {'error_message': 'Invalid request method'})
 
-
+    @http.route('/EditeReservation',csrf=False, type='http', auth="public", website=True, sitemap=False)
+    def EditeReservation(self, **post):
+            if request.httprequest.method == 'POST':
+                ev_start = post.get('ev_start')
+                type_meal = post.get('type_meal')
+                code_massar = post.get('code_massar')
+                date_consommation = datetime.strptime(ev_start, '%Y-%m-%d')
+                resident = request.env['cu.resident'].sudo().search([('code_massar', '=', code_massar)])
+                dlt_reservation = request.env['cu.reservation'].sudo().search([('resident_id', '=', resident.id),('date_consommation', '=', date_consommation.date()),('type', '=', type_meal)])
+                if dlt_reservation and date_consommation > datetime.today():
+                    dlt_reservation.unlink()
+                    resident.solde+=1.4
+                return request.redirect('/welcome')
+                # price = nb_days * (int(dejeuner) + int(diner))
+            else:
+                return request.render('gr_cu.error_template', {'error_message': 'Invalid request method'})
     
