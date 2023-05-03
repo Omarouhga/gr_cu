@@ -149,7 +149,7 @@
               
       <div class="col-2 mt-2 pl-4">
   <div class="text-center  mb-4" >
-  <img src="/gr_cu/static/img/photo_de_profile.jpg" alt="User Image" class="rounded-circle" style=" width: 130px; height: 130px;" />
+  <img  id="myImg" name="myImg" alt="User Image" class="rounded-circle" style=" width: 130px; height: 130px;" />
 </div>
   <div class="d-flex flex-column h-100">
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -182,6 +182,20 @@
                                 <div class="card-body">
                                     <form method="post" action="/espace_etudiant">
                                         <div class="form-group row">
+                                            
+                                            <div class="col-sm-10">
+                                                 
+                                                <script>
+                                                    var imgUrl="data:image/png;base64,";
+                                                    imgUrl+='<t t-esc="res.image_resident" />';
+                                                    document.getElementById("myImg").src=imgUrl; 
+                                                   
+                                                </script>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            
                                             <label for="Name" class="col-sm-2 col-form-label">Name</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" id="name" t-att-value="res.name" readonly="true"/>
@@ -353,7 +367,7 @@
                                             </t>
                                         </tbody>
                                     </table>
-                                    <div id='calendar'></div>
+                                        <div id='calendar'/>
                                     <div class="modal fade" id="EditeReserveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                         <div class="modal-content">
