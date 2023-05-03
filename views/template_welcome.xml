@@ -73,7 +73,7 @@
                         daysOfWeek: [0, 1, 2, 3, 4, 5] // remove Saturday (6)
                       },
                     eventClick: function(info) {
-                        if(info.event.title=="Dejeune"){
+                        if(info.event.title=="Dejeuné"){
                             type_meal.value = "DJ";
                         }else{
                             type_meal.value = "D";

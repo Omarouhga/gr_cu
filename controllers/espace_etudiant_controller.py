@@ -89,7 +89,6 @@ class EspaceEtudiantController(http.Controller):
                     dlt_reservation.unlink()
                     resident.solde+=1.4
                 return request.redirect('/welcome')
-                # price = nb_days * (int(dejeuner) + int(diner))
             else:
                 return request.render('gr_cu.error_template', {'error_message': 'Invalid request method'})
     
