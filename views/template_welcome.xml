@@ -37,20 +37,18 @@
               
               
 
-            function Charger_solde(){
-                 window.location.href = "";
-            }
+            
             
             document.addEventListener('DOMContentLoaded', function() {
                 var calendarEl = document.getElementById('calendar');
                 var events = []; // define an empty array to store events
-                <t t-foreach="reservations" t-as="order">
-                    var color = '<t t-if="order.type == 'DJ'">green</t><t t-elif="order.type == 'D'">red</t><t t-else="">blue</t>';
-                    var title = '<t t-if="order.type == 'DJ'">Dejeuné</t><t t-elif="order.type == 'D'">Diner</t><t t-else="">--</t>';
+                <t t-foreach="reservations" t-as="res">
+                    var color = '<t t-if="res.type == 'DJ'">green</t><t t-elif="res.type == 'D'">red</t><t t-else="">blue</t>';
+                    var title = '<t t-if="res.type == 'DJ'">Dejeuné</t><t t-elif="res.type == 'D'">Diner</t><t t-else="">--</t>';
                     var event = {
                         title: title,
-                        start: '<t t-esc="order.date_consommation" />',
-                        end: '<t t-esc="order.date_consommation" />',
+                        start: '<t t-esc="res.date_consommation" />',
+                        end: '<t t-esc="res.date_consommation" />',
                         color: color
                     };
                     events.push(event); 
@@ -148,24 +146,23 @@
             <div class="row">
               
       <div class="col-2 mt-2 pl-4">
-  <div class="text-center  mb-4" >
-  <img  id="myImg" name="myImg" alt="User Image" class="rounded-circle" style=" width: 130px; height: 130px;" />
-</div>
-  <div class="d-flex flex-column h-100">
-    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="nav-link active" id="v-pills-informations-tab" data-toggle="pill" href="#v-pills-informations" role="tab" aria-controls="v-pills-informations" aria-selected="true">Mes informations</a>
-      <a class="nav-link" id="v-pills-solde-tab" data-toggle="pill" href="#v-pills-solde" role="tab" aria-controls="v-pills-solde" aria-selected="false">Mon solde</a>
-      <a class="nav-link" id="v-pills-reservation-tab" data-toggle="pill" href="#v-pills-reservation" role="tab" aria-controls="v-pills-reservation" aria-selected="false">Réserver</a>
-      <a class="nav-link" id="v-pills-mes-reservations-tab" data-toggle="pill" href="#v-pills-mes-reservations" role="tab" aria-controls="v-pills-mes-reservations" aria-selected="false">Mes réservations</a>
-      <a class="nav-link" id="v-pills-charger-solde-tab" data-toggle="pill" href="#v-pills-charger-solde" role="tab" aria-controls="v-pills-charger-solde" aria-selected="false">Charger mon solde</a>
-      <div class="mt-auto">
-        <hr class="mt-auto"/>
-        <a class="nav-link" href="#">Déconnexion</a>
-      </div>
-    </div>
-  </div>
-</div>
-
+                <div class="text-center  mb-4" >
+                    <img  id="myImg" name="myImg" alt="User Image" class="rounded-circle" style=" width: 130px; height: 130px;" />
+                </div> 
+                    <center><p> Mon Solde: <t t-esc="'%.2f' % res.solde" ></t></p></center> 
+                <div class="d-flex flex-column h-100">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-informations-tab" data-toggle="pill" href="#v-pills-informations" role="tab" aria-controls="v-pills-informations" aria-selected="true">Mes informations</a>
+                    <a class="nav-link" id="v-pills-reservation-tab" data-toggle="pill" href="#v-pills-reservation" role="tab" aria-controls="v-pills-reservation" aria-selected="false">Réserver</a>
+                    <a class="nav-link" id="v-pills-mes-reservations-tab" data-toggle="pill" href="#v-pills-mes-reservations" role="tab" aria-controls="v-pills-mes-reservations" aria-selected="false">Mes réservations</a>
+                    <a class="nav-link" id="v-pills-charger-solde-tab" data-toggle="pill" href="#v-pills-charger-solde" role="tab" aria-controls="v-pills-charger-solde" aria-selected="false">Charger mon solde</a>
+                    <div class="mt-auto">
+                        <hr class="mt-auto"/>
+                        <a class="nav-link" href="/auth/login">Déconnexion</a>
+                    </div>
+                    </div>
+                </div>
+                </div>
                 <div class="col-10">
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-informations" role="tabpanel" aria-labelledby="v-pills-informations-tab">
@@ -179,77 +176,72 @@
                                 <t t-if="message == '0'">
                                 <center><div  class="alert alert-danger mt-3">Vous n'avez effectué aucun changement</div></center>
                                 </t>
-                                <div class="card-body">
-                                    <form method="post" action="/espace_etudiant">
-                                        <div class="form-group row">
+                                <div class="card-body mx-auto col-6">
+                                        <form method="post" action="/espace_etudiant">
+                                            <div class="form-group row">
+                                                <div class="col-sm-10">
+                                                    <script>
+                                                        var imgUrl="data:image/png;base64,";
+                                                        imgUrl+='<t t-esc="res.image_resident" />';
+                                                        document.getElementById("myImg").src=imgUrl; 
+                                                    </script>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Name" class="col-sm-2 col-form-label">Name</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="name" t-att-value="res.name" readonly="true"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="last_name" class="col-sm-2 col-form-label">Last Name</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="last_name" t-att-value="res.last_name" readonly="true" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="gender" class="col-sm-2 col-form-label">Gender</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="gender" t-att-value="res.gender" readonly="true"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="code_massar" class="col-sm-2 col-form-label">Code Massar</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" name="code_massar" id="code_massar" t-att-value="res.code_massar" readonly="true"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="apogee" class="col-sm-2 col-form-label">Apogee</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="apogee" t-att-value="res.apogee" readonly="true"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="phone" class="form-control" id="phone" t-att-value="res.phone" placeholder="Enter phone number"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                                                <div class="col-sm-10">
+                                                    <input type="email" class="form-control" id="email" name="email" t-att-value="res.email" placeholder="Enter email"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="password" class="col-sm-2 col-form-label">Password</label>
+                                                <div class="col-sm-9">
+                                                    <input type="password" name="password" class="form-control" id="password" t-att-value="res.password" placeholder="Enter password"/>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <button id="visibility-button" class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility()">👁️</button>
+                                                </div>
+                                                <t t-if="error">
+                                                    <center><div class="text-danger" t-esc="error"></div></center>
+                                                </t>
                                             
-                                            <div class="col-sm-10">
-                                                 
-                                                <script>
-                                                    var imgUrl="data:image/png;base64,";
-                                                    imgUrl+='<t t-esc="res.image_resident" />';
-                                                    document.getElementById("myImg").src=imgUrl; 
-                                                   
-                                                </script>
-                                                
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            
-                                            <label for="Name" class="col-sm-2 col-form-label">Name</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="name" t-att-value="res.name" readonly="true"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="last_name" class="col-sm-2 col-form-label">Last Name</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="last_name" t-att-value="res.last_name" readonly="true" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="gender" class="col-sm-2 col-form-label">Gender</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="gender" t-att-value="res.gender" readonly="true"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="code_massar" class="col-sm-2 col-form-label">Code Massar</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="code_massar" id="code_massar" t-att-value="res.code_massar" readonly="true"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="apogee" class="col-sm-2 col-form-label">Apogee</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="apogee" t-att-value="res.apogee" readonly="true"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="phone" class="col-sm-2 col-form-label">Phone</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" name="phone" class="form-control" id="phone" t-att-value="res.phone" placeholder="Enter phone number"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="email" class="col-sm-2 col-form-label">Email</label>
-                                            <div class="col-sm-10">
-                                                <input type="email" class="form-control" id="email" name="email" t-att-value="res.email" placeholder="Enter email"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="password" class="col-sm-2 col-form-label">Password</label>
-                                            <div class="col-sm-9">
-                                                <input type="password" name="password" class="form-control" id="password" t-att-value="res.password" placeholder="Enter password"/>
-                                            </div>
-                                            <div class="col-sm-1">
-                                                <button id="visibility-button" class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility()">👁️</button>
-                                            </div>
-                                            <t t-if="error">
-                                                <center><div class="text-danger" t-esc="error"></div></center>
-                                              </t>
-                                         
-                                        </div>
                                         <div class="form-group row">
                                             <div class="col-sm-10 offset-sm-2">
                                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -261,30 +253,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="v-pills-solde" role="tabpanel" aria-labelledby="v-pills-solde-tab">
-                            <div class="card">
-                                <div class="card-header">
-                                    <center><h4>Mon solde</h4></center>
-                                </div>
-
-                                <div class="card-body">
-                                    <div class="form-group row">
-                                        <label for="phone" class="col-sm-2 col-form-label">Solde</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="solde" t-att-value="res.solde"  readonly="true" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="Name" class="col-sm-2 col-form-label">Charger Solde</label>
-                                        <div class="col-sm-10">
-                                            <div class="col-sm-1">
-                                                <button id="visibility-button" class="btn btn-outline-secondary" type="button" onclick="Charger_solde()">Charger</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                       
                         <div class="tab-pane fade" id="v-pills-reservation" role="tabpanel" aria-labelledby="v-pills-reservation-tab">
                             <div class="card">
                                 <div class="card-header">
@@ -340,35 +309,13 @@
                             </div>                       
                         </div>
                         <div class="tab-pane fade" id="v-pills-mes-reservations" role="tabpanel" aria-labelledby="v-pills-mes-reservations-tab">
-                            <div class="card">
+                            <!-- <div class="card">
                                 <div class="card-header">
                                     <center><h4>Mes réservations</h4></center>
-                                </div>
+                                </div> -->
                                 <div class="card-body">
-                                    <table class="table-striped table">
-                                        <thead style="font-size:18px;">
-                                            <tr>
-                                                <h6>
-                                                    <b>
-                                                        <th>Type</th>
-                                                        <th>Date de consommation</th>
-                                                        <th>Date de résérvation</th>
-                
-                                                    </b>
-                                                </h6>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <t t-foreach="reservations" t-as="order">
-                                               <tr>
-                                                    <td><t t-if="order.type == 'DJ'">Dejeune</t><t t-elif="order.type == 'D'">Diner</t><t t-else="">--</t></td>
-                                                    <td><span t-esc="order.date_consommation"></span></td>
-                                               </tr>
-                                            </t>
-                                        </tbody>
-                                    </table>
-                                        <div id='calendar'/>
-                                    <div class="modal fade" id="EditeReserveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div id='calendar'/>
+                                        <div class="modal fade" id="EditeReserveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -396,7 +343,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            <!-- </div> -->
                         </div>
                             <div class="tab-pane fade" id="v-pills-charger-solde" role="tabpanel" aria-labelledby="v-pills-charger-solde-tab">
                         <div class="card">
@@ -404,7 +351,7 @@
                             <center><h4>Charger mon solde</h4></center>
                         </div>
                         <div class="card-body">
-                            <div class="mx-auto" style="max-width: 400px;">
+                            <div class="mx-auto col-6" >
                                 <form>
                                     <div class="form-group">
                                         <label for="card_name">Nom complet du porteur de la carte :</label>
@@ -475,23 +422,11 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
                 </div>
              </div>
 
-        </div>
-                
-            
-        
+        </div>     
     </template>
-    <template id="success_message">
-        <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong><t t-esc="success_message"/></strong>
-        </div>
-    </template>
+   
     
 </odoo>
