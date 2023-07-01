@@ -136,7 +136,7 @@
       <a class="nav-link" id="v-pills-charger-solde-tab" data-toggle="pill" href="#v-pills-charger-solde" role="tab" aria-controls="v-pills-charger-solde" aria-selected="false">Charger mon solde</a>
       <div class="mt-auto">
         <hr class="mt-auto"/>
-        <a class="nav-link" href="#">Déconnexion</a>
+        <a class="nav-link" href="/">Déconnexion</a>
       </div>
     </div>
   </div>

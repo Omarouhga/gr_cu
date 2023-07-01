@@ -9,7 +9,7 @@ class CUAgent(models.Model):
 
     name=fields.Char(string="Nom",required=True)
     last_name=fields.Char(string="Prénom",required=True)
-    phone=fields.Char(string="Phone",required=True)
+    phone=fields.Char(string="Phone")
     email=fields.Char(string="Email")
     image = fields.Image(string="Image")
 
@@ -49,11 +49,4 @@ class CUAgent(models.Model):
         if not re.match(pattern, email):
             raise ValidationError('Invalid email address')
 
-    @api.onchange("last_name","name")
-    def compute_name(self):
-        for rec in self:
-            rec.name=""
-            if  rec.name :
-                rec.name=rec.name+rec.name.upper()+" "
-            if rec.last_name :
-                rec.name=rec.name+rec.last_name.title()+" "
+    
