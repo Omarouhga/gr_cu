@@ -24,7 +24,7 @@ Super Admin: Full system access for administration
 Access to resident lists for quick searches.
 Local reload capability for residents without a bank account.
 Modification of resident data for seamless management.
-(Refer to Figures 13, 14, 15 in the repository.)
+
 
 ![image](https://github.com/Omarouhga/gr_cu/assets/103626975/ef17ae4a-fc16-4a49-93e0-ac635827ccc1)
 
@@ -41,7 +41,6 @@ Modification of resident data for seamless management.
 # Restaurant Manager Interfaces:
 Visualization of reservation metrics for efficient meal planning.
 Access to already made reservations.
-(Refer to Figure 16 in the repository.)
 
 ![image](https://github.com/Omarouhga/gr_cu/assets/103626975/c6c3b142-17ea-4085-814f-f2eadcfb83fe)
 
@@ -54,7 +53,6 @@ Access to already made reservations.
 # Admin Interfaces:
 Privileged access for comprehensive system management.
 User management for complete control over system functionality.
-(Refer to Figures 17, 18, 19 in the repository.)
 
 ![image](https://github.com/Omarouhga/gr_cu/assets/103626975/52017261-e36f-4e77-9faa-9cb0ae7f12aa)
 
@@ -65,7 +63,6 @@ User management for complete control over system functionality.
 # Verification Interfaces:
 Single interface for quick verification of resident meal reservations.
 Clear symbols (green, red, gray) indicating reservation status.
-(Refer to Figure 20 in the repository.)
 
 ![image](https://github.com/Omarouhga/gr_cu/assets/103626975/44344fc5-29e4-40a6-9edb-c55b66c7dfb4)
 
